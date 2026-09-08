@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cachorro-Quente</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700;800&family=Boldonse&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* ============================================================
+   DIVINO AÇAÍ — Final2.css (Páginas Internas)
+   Compartilhado por: acai.html, MilkShake.html,
+                      Picolés.html, Cachorro-quente.html
+   ============================================================ */
+
+      /* ── 1. VARIÁVEIS & RESET ── */
+      :root {
+        --roxo-escuro: #2e004f;
+        --roxo-medio: #5c0099;
+        --roxo-claro: #a84ec0;
+        --roxo-card: #4a0070;
+        --roxo-pastel: #e9d5f5;
+        --amarelo: #f8e14b;
+        --amarelo-h: #f0d000;
+        --branco: #ffffff;
+        --bg: #f6f2fb;
+        --texto-card: #f0e9ff;
+        --sombra: rgba(46, 0, 79, 0.2);
+        --radius: 16px;
+        --tr: 0.25s ease;
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg);
+        color: var(--roxo-escuro);
+        overflow-x: hidden;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      /* ── 2. HEADER ── */
+      #header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--roxo-escuro);
+        padding: 0 40px;
+        height: 68px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      #logo {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.9rem;
+        color: var(--amarelo);
+      }
+
+      #menu {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      #menu a {
+        color: var(--texto-card);
+        font-size: 0.92rem;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 10px;
+        transition:
+          background var(--tr),
+          color var(--tr);
+      }
+
+      #menu a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--amarelo);
+      }
+
+      #menu .btn-contato {
+        background: var(--amarelo);
+        color: var(--roxo-escuro) !important;
+        font-weight: 700;
+        border-radius: 22px;
+        padding: 8px 22px;
+        margin-left: 8px;
+        transition:
+          background var(--tr),
+          transform var(--tr);
+      }
+
+      #menu .btn-contato:hover {
+        background: var(--amarelo-h);
+        transform: scale(1.05);
+      }
+
+      /* Hamburguer */
+      #menuToggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--branco);
+        font-size: 1.6rem;
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 8px;
+        line-height: 1;
+        transition: background var(--tr);
+      }
+      #menuToggle:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ── 3. TÍTULO DE SEÇÃO ── */
+      .secao-titulo {
+        text-align: center;
+        padding: 40px 20px 10px;
+      }
+
+      .secao-titulo h2 {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 800;
+        color: var(--roxo-escuro);
+      }
+
+      .secao-titulo h2 span {
+        color: var(--roxo-claro);
+      }
+
+      .linha-dec {
+        width: 56px;
+        height: 4px;
+        background: var(--amarelo);
+        border-radius: 4px;
+        margin: 10px auto 0;
+      }
+
+      /* ── 4. CARDS DE TAMANHO (Açaí / MilkShake) ── */
+      .tamanhos-grid {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        padding: 30px 20px 20px;
+        flex-wrap: wrap;
+      }
+
+      .tam-card {
+        background: linear-gradient(
+          135deg,
+          var(--roxo-card),
+          var(--roxo-escuro)
+        );
+        border-radius: var(--radius);
+        width: 180px;
+        padding: 28px 20px 22px;
+        text-align: center;
+        box-shadow: 0 6px 24px var(--sombra);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition:
+          transform var(--tr),
+          box-shadow var(--tr);
+        cursor: default;
+      }
+
+      .tam-card:hover {
+        transform: translateY(-6px) rotate(3deg);
+        box-shadow: 0 14px 36px rgba(46, 0, 79, 0.35);
+      }
+
+      .tam-card .tam-letra {
+        font-family: "Boldonse", system-ui, sans-serif;
+        font-size: 3rem;
+        color: var(--amarelo);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+
+      .tam-card .tam-ml {
+        font-size: 0.9rem;
+        color: var(--texto-card);
+        font-weight: 300;
+        margin-bottom: 10px;
+      }
+
+      .tam-card .tam-preco {
+        font-family: "Boldonse", system-ui, sans-serif;
+        font-size: 1.2rem;
+        color: var(--amarelo);
+      }
+
+      /* ── 5. ACOMPANHAMENTOS (Açaí) ── */
+      .acomp-grid {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 16px 20px 36px;
+        flex-wrap: wrap;
+      }
+
+      .acomp-col {
+        background: linear-gradient(
+          135deg,
+          var(--roxo-card),
+          var(--roxo-escuro)
+        );
+        border-radius: var(--radius);
+        width: 220px;
+        padding: 16px 20px 20px;
+        box-shadow: 0 4px 20px var(--sombra);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        transition: transform var(--tr);
+      }
+
+      .acomp-col:hover {
+        transform: translateY(-4px);
+      }
+
+      .acomp-col .acomp-badge {
+        display: inline-block;
+        background: var(--amarelo);
+        color: var(--roxo-escuro);
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        padding: 4px 14px;
+        border-radius: 20px;
+        margin-bottom: 14px;
+      }
+
+      .acomp-col ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .acomp-col ul li {
+        font-size: 0.88rem;
+        color: var(--texto-card);
+        font-weight: 300;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .acomp-col ul li:last-child {
+        border-bottom: none;
+      }
+
+      .acomp-col ul li .preco-item {
+        font-weight: 600;
+        color: var(--amarelo);
+        white-space: nowrap;
+        font-size: 0.8rem;
+      }
+
+      /* ── 6. SEÇÃO TEXTO + IMAGEM (Açaí) ── */
+      .fruta-section {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        max-width: 1050px;
+        margin: 36px auto 0;
+        padding: 40px 40px;
+        background: var(--branco);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 24px var(--sombra);
+      }
+
+      .fruta-section .fruta-img {
+        flex-shrink: 0;
+        width: 280px;
+      }
+
+      .fruta-section .fruta-img img {
+        width: 100%;
+        border-radius: var(--radius);
+        box-shadow: 0 8px 28px var(--sombra);
+      }
+
+      .fruta-section .fruta-texto h1 {
+        font-family: "Boldonse", system-ui, sans-serif;
+        font-size: 1.7rem;
+        color: var(--roxo-escuro);
+        margin-bottom: 14px;
+      }
+
+      .fruta-section .fruta-texto p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: #444;
+        font-weight: 300;
+      }
+
+      /* ── 7. CARDS DE PRODUTO (MilkShake / Sorvetes) ── */
+      .produtos-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        max-width: 1100px;
+        margin: 20px auto 36px;
+        padding: 0 30px;
+      }
+
+      .prod-card {
+        background: var(--roxo-pastel);
+        border-radius: var(--radius);
+        padding: 12px 12px 16px;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 4px 18px rgba(46, 0, 79, 0.1);
+        border: 1px solid rgba(168, 78, 192, 0.15);
+        transition:
+          transform var(--tr),
+          box-shadow var(--tr);
+        overflow: visible;
+      }
+
+      .prod-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 32px rgba(46, 0, 79, 0.2);
+      }
+
+      .prod-card img {
+        width: 80%;
+        height: 160px;
+        object-fit: contain;
+        transition: transform 0.4s ease;
+        margin-bottom: 6px;
+      }
+
+      .prod-card:hover img {
+        transform: rotate(6deg) scale(1.08);
+      }
+
+      .prod-card .btn-info {
+        background: linear-gradient(
+          135deg,
+          var(--roxo-medio),
+          var(--roxo-claro)
+        );
+        color: var(--branco);
+        border: none;
+        border-radius: 20px;
+        padding: 8px 20px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        transition:
+          transform var(--tr),
+          box-shadow var(--tr);
+        margin-top: 4px;
+      }
+
+      .prod-card .btn-info:hover {
+        transform: scale(1.06);
+        box-shadow: 0 4px 14px rgba(92, 0, 153, 0.3);
+      }
+
+      /* ── 8. MODAL DE INFORMAÇÃO ── */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.72);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal-overlay.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .info-milkshake {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.85);
+        z-index: 1000;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+
+        background: linear-gradient(
+          135deg,
+          var(--roxo-escuro),
+          var(--roxo-card)
+        );
+        color: var(--texto-card);
+        border-radius: 24px;
+        padding: 36px 40px;
+        width: min(480px, 88vw);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+      }
+
+      .info-milkshake.show-info {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .info-milkshake h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: 2rem;
+        color: var(--amarelo);
+        margin-bottom: 16px;
+      }
+
+      .info-milkshake p {
+        font-size: 0.95rem !important;
+        line-height: 1.8 !important;
+        color: var(--texto-card) !important;
+        text-align: center !important;
+      }
+
+      .info-milkshake .fechar-modal {
+        display: inline-block;
+        margin-top: 20px;
+        background: var(--amarelo);
+        color: var(--roxo-escuro);
+        border: none;
+        border-radius: 20px;
+        padding: 8px 24px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        transition: background var(--tr);
+      }
+
+      .info-milkshake .fechar-modal:hover {
+        background: var(--amarelo-h);
+      }
+
+      /* ── 9. ADICIONAIS CACHORRO-QUENTE ── */
+      .adicionais-grid {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 16px 20px 30px;
+      }
+
+      .adicional-card {
+        position: relative;
+        width: 220px;
+        height: 200px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 6px 24px var(--sombra);
+        transition: transform var(--tr);
+      }
+
+      .adicional-card:hover {
+        transform: scale(1.04);
+      }
+
+      .adicional-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.65;
+        transition: opacity var(--tr);
+      }
+
+      .adicional-card:hover img {
+        opacity: 0.85;
+      }
+
+      .adicional-card .adicional-label {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .adicional-card .adicional-nome {
+        font-family: "Boldonse", system-ui, sans-serif;
+        font-size: 1.1rem;
+        color: var(--branco);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      }
+
+      .adicional-card .adicional-preco {
+        background: var(--amarelo);
+        color: var(--roxo-escuro);
+        font-weight: 700;
+        font-size: 0.85rem;
+        padding: 3px 12px;
+        border-radius: 14px;
+      }
+
+      /* ── 10. CACHORRO-QUENTE — ficha do produto ── */
+      .cachorro-lista {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px 30px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .cachorro-item {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        background: var(--branco);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 20px var(--sombra);
+        overflow: hidden;
+        transition: transform var(--tr);
+      }
+
+      .cachorro-item:hover {
+        transform: translateY(-4px);
+      }
+
+      .cachorro-item.inverso {
+        flex-direction: row-reverse;
+      }
+
+      .cachorro-item .cachorro-img {
+        flex-shrink: 0;
+        width: 240px;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 20px;
+        margin: 1%;
+      }
+
+      .cachorro-item .cachorro-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+        border-radius: 20px;
+        margin: 1%;
+      }
+
+      .cachorro-item:hover .cachorro-img img {
+        transform: scale(1.06);
+      }
+
+      .cachorro-item .cachorro-info {
+        flex: 1;
+        padding: 28px 28px 28px 0;
+      }
+
+      .cachorro-item.inverso .cachorro-info {
+        padding: 28px 0 28px 28px;
+      }
+
+      .cachorro-item .cachorro-info h1 {
+        font-family: "Boldonse", system-ui, sans-serif;
+        font-size: 1.6rem;
+        color: var(--roxo-escuro);
+        margin-bottom: 10px;
+      }
+
+      .cachorro-item .cachorro-info p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: #555;
+        font-weight: 300;
+        margin-bottom: 16px;
+      }
+
+      .cachorro-item .cachorro-info .btn-info {
+        background: linear-gradient(
+          135deg,
+          var(--roxo-medio),
+          var(--roxo-claro)
+        );
+        color: var(--branco);
+        border: none;
+        border-radius: 20px;
+        padding: 10px 24px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        transition:
+          transform var(--tr),
+          box-shadow var(--tr);
+      }
+
+      .cachorro-item .cachorro-info .btn-info:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 14px rgba(92, 0, 153, 0.3);
+      }
+
+      /* ── 11. CASQUINHA (Sorvetes) ── */
+      .casquinha-grid {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        padding: 16px 20px 40px;
+      }
+
+      .casquinha-card {
+        background: linear-gradient(
+          135deg,
+          var(--roxo-claro),
+          var(--roxo-escuro)
+        );
+        border-radius: var(--radius);
+        width: 220px;
+        padding: 28px 22px 24px;
+        text-align: center;
+        box-shadow: 0 6px 24px var(--sombra);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: transform var(--tr);
+      }
+
+      .casquinha-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .casquinha-card h1 {
+        font-family: "Boldonse", system-ui, sans-serif;
+        font-size: 1.2rem;
+        color: var(--amarelo);
+        margin-bottom: 12px;
+      }
+
+      .casquinha-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .casquinha-card ul li {
+        font-size: 0.88rem;
+        color: var(--texto-card);
+        font-weight: 300;
+        padding: 5px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .casquinha-card ul li:last-child {
+        border-bottom: none;
+      }
+
+      .casquinha-card ul li span {
+        color: var(--amarelo);
+        font-weight: 600;
+      }
+
+      /* ── 12. RODAPÉ DE ENTREGA ── */
+      .rodape-entrega {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        background: var(--roxo-escuro);
+        padding: 28px 20px;
+        margin-top: 50px;
+      }
+
+      .rodape-entrega img {
+        width: 70px;
+        filter: brightness(1.1);
+      }
+
+      .rodape-entrega .entrega-info h4 {
+        font-family: "Boldonse", system-ui, sans-serif;
+        font-size: 1.3rem;
+        color: var(--amarelo);
+        margin-bottom: 2px;
+      }
+
+      .rodape-entrega .entrega-info p {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 300;
+      }
+
+      /* ── 13. RESPONSIVO — TABLET ── */
+      @media (max-width: 900px) {
+        .produtos-grid {
+          grid-template-columns: repeat(3, 1fr);
+          padding: 0 16px;
+        }
+        .fruta-section {
+          flex-direction: column;
+          padding: 30px 24px;
+        }
+        .fruta-section .fruta-img {
+          width: 100%;
+        }
+        .cachorro-item,
+        .cachorro-item.inverso {
+          flex-direction: column;
+        }
+        .cachorro-item .cachorro-img {
+          width: 100%;
+          height: 220px;
+        }
+        .cachorro-item .cachorro-info {
+          padding: 24px !important;
+        }
+      }
+
+      /* ── 14. RESPONSIVO — MOBILE ── */
+      @media (max-width: 600px) {
+        #header {
+          padding: 0 16px;
+          height: 62px;
+        }
+
+        #menuToggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        #menu {
+          display: none;
+          position: absolute;
+          top: 62px;
+          left: 0;
+          right: 0;
+          background: var(--roxo-escuro);
+          flex-direction: column;
+          padding: 12px 16px 20px;
+          gap: 4px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        #menu.open {
+          display: flex;
+        }
+
+        #menu a {
+          font-size: 1rem;
+          padding: 12px 14px;
+          width: 100%;
+          border-radius: 10px;
+        }
+
+        #menu .btn-contato {
+          margin: 6px 0 0;
+          text-align: center;
+        }
+
+        .tamanhos-grid {
+          gap: 14px;
+        }
+        .tam-card {
+          width: 140px;
+          padding: 20px 14px 18px;
+        }
+        .tam-card .tam-letra {
+          font-size: 2.4rem;
+        }
+
+        .acomp-grid {
+          flex-direction: column;
+          align-items: center;
+        }
+        .acomp-col {
+          width: 100%;
+          max-width: 360px;
+        }
+
+        .produtos-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 14px;
+          padding: 0 12px;
+        }
+
+        .prod-card img {
+          height: 120px;
+        }
+
+        .adicionais-grid {
+          flex-direction: column;
+          align-items: center;
+        }
+        .adicional-card {
+          width: 100%;
+          max-width: 360px;
+        }
+
+        .casquinha-grid {
+          flex-direction: column;
+          align-items: center;
+        }
+        .casquinha-card {
+          width: 100%;
+          max-width: 360px;
+        }
+
+        .rodape-entrega {
+          flex-direction: column;
+          text-align: center;
+          margin-top: 36px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <div id="logo">🍧 Divino Açaí</div>
+      <button id="menuToggle" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav id="menu">
+        <a href="index.html">Início</a>
+        <a href="Contato_teste.html">Divino</a>
+        <a class="btn-contato" href="Contato_teste.html"
+          >Contato</a
+        >
+      </nav>
+    </header>
+
+    <div class="secao-titulo">
+      <h2>🌶️ <span>Adicionais</span></h2>
+      <div class="linha-dec"></div>
+    </div>
+
+    <div class="adicionais-grid">
+      <div class="adicional-card">
+        <img src="./img/Doritos 2.jpg" alt="Doritos" />
+        <div class="adicional-label">
+          <span class="adicional-nome">Doritos</span>
+          <span class="adicional-preco">R$ 4,00</span>
+        </div>
+      </div>
+      <div class="adicional-card">
+        <img src="./img/Calabresa 2.jpg" alt="Calabresa" />
+        <div class="adicional-label">
+          <span class="adicional-nome">Calabresa</span>
+          <span class="adicional-preco">R$ 4,00</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao-titulo">
+      <h2>🌭 <span>Cachorro-Quente</span></h2>
+      <div class="linha-dec"></div>
+    </div>
+
+    <div class="cachorro-lista">
+      <div class="cachorro-item">
+        <div class="cachorro-img">
+          <img src="./img/Cachorro Simples.PNG.jpg" alt="Simples" />
+        </div>
+        <div class="cachorro-info">
+          <h1>Simples</h1>
+          <p>
+            Delicioso cachorro-quente com salsicha suculenta, pão macio e uma
+            combinação perfeita de molhos e acompanhamentos. Ideal para um
+            lanche rápido e saboroso!
+          </p>
+          <button class="btn-info" onclick="abrirModal('modalSimples')">
+            Ver ingredientes
+          </button>
+          <p>R$17,00</p>
+        </div>
+      </div>
+      <div class="cachorro-item inverso">
+        <div class="cachorro-img">
+          <img src="./img/Cachorro Duplo.PNG.jpg" alt="Duplo" />
+        </div>
+        <div class="cachorro-info">
+          <h1>Duplo</h1>
+          <p>
+            O cachorro-quente completo é uma explosão de sabores! Com duas
+            salsichas suculentas, pão macio e uma variedade de ingredientes
+            frescos — a escolha perfeita pra quem quer um lanche cheio de
+            satisfação.
+          </p>
+          <button class="btn-info" onclick="abrirModal('modalDuplo')">
+            Ver ingredientes
+          </button>
+          <p>R$20,00</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="overlay" class="modal-overlay" onclick="fecharTodos()"></div>
+    <span id="modalSimples" class="info-milkshake">
+      <h1>🌭 Simples</h1>
+      <p>
+        Pão · Uma Salsicha · Molho Vermelho · Milho · Batata Palha · Maionese ·
+        Ketchup · Mostarda
+      </p>
+      <button class="fechar-modal" onclick="fecharTodos()">Fechar</button>
+    </span>
+    <span id="modalDuplo" class="info-milkshake">
+      <h1>🌭 Duplo</h1>
+      <p>
+        Pão · Duas Salsichas · Molho Vermelho · Ovo · Queijo · Presunto · Milho
+        · Batata Palha · Maionese · Ketchup · Mostarda
+      </p>
+      <button class="fechar-modal" onclick="fecharTodos()">Fechar</button>
+    </span>
+
+    <div class="rodape-entrega">
+      <img src="./img/Motociclista.png" alt="Entregador" />
+      <div class="entrega-info">
+        <h4>📞 (54) 99631-2541</h4>
+        <p>Peça pelo WhatsApp e receba em casa!</p>
+      </div>
+    </div>
+
+    <script>
+      const toggle = document.getElementById("menuToggle");
+      const menu = document.getElementById("menu");
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("open");
+        toggle.querySelector("i").className = menu.classList.contains("open")
+          ? "fas fa-times"
+          : "fas fa-bars";
+      });
+
+      function abrirModal(id) {
+        fecharTodos();
+        document.getElementById(id).classList.add("show-info");
+        document.getElementById("overlay").classList.add("show");
+      }
+      function fecharTodos() {
+        document
+          .querySelectorAll(".info-milkshake")
+          .forEach((el) => el.classList.remove("show-info"));
+        document.getElementById("overlay").classList.remove("show");
+      }
+    </script>
+  </body>
+</html>

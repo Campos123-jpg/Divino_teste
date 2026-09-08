@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Contato - Divino Acai</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700;800&family=Boldonse&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <style>
+      /* ============================================================
+   DIVINO AÇAÍ — Empresa & Contato (CSS embutido)
+   ============================================================ */
+      :root {
+        --roxo-escuro: #2e004f;
+        --roxo-medio: #5c0099;
+        --roxo-claro: #a84ec0;
+        --amarelo: #f8e14b;
+        --amarelo-h: #f0d000;
+        --branco: #ffffff;
+        --bg: #f6f2fb;
+        --texto-card: #f0e9ff;
+        --sombra: rgba(46, 0, 79, 0.18);
+        --radius: 18px;
+        --tr: 0.25s ease;
+      }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg);
+        color: var(--roxo-escuro);
+        overflow-x: hidden;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      /* HEADER */
+      #header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--roxo-escuro);
+        padding: 0 40px;
+        height: 70px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+      }
+      #logo {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.9rem;
+        color: var(--amarelo);
+      }
+      #menu {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      #menu a {
+        color: var(--texto-card);
+        font-size: 0.92rem;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 10px;
+        transition:
+          background var(--tr),
+          color var(--tr);
+      }
+      #menu a:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--amarelo);
+      }
+      #menu .btn-contato {
+        background: var(--amarelo);
+        color: var(--roxo-escuro) !important;
+        font-weight: 700;
+        border-radius: 22px;
+        padding: 8px 22px;
+        margin-left: 8px;
+        transition:
+          background var(--tr),
+          transform var(--tr);
+      }
+      #menu .btn-contato:hover {
+        background: var(--amarelo-h);
+        transform: scale(1.05);
+      }
+      #menuToggle {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.6rem;
+        cursor: pointer;
+        padding: 6px 10px;
+        border-radius: 8px;
+        line-height: 1;
+        transition: background var(--tr);
+      }
+      #menuToggle:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* BANNER EMPRESA */
+      .banner-empresa {
+        width: calc(100% - 60px);
+        max-width: 1100px;
+        margin: 30px auto;
+        border-radius: var(--radius);
+        overflow: hidden;
+        height: 320px;
+        position: relative;
+        box-shadow: 0 8px 40px var(--sombra);
+        background: linear-gradient(
+          135deg,
+          var(--roxo-escuro),
+          var(--roxo-claro)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .banner-empresa img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.55;
+      }
+      .banner-empresa-titulo {
+        position: relative;
+        z-index: 1;
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(2rem, 5vw, 3.8rem);
+        color: #fff;
+        text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      /* SEÇÃO TEXTO + IMAGEM */
+      .secao-info {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        max-width: 1100px;
+        margin: 0 auto 40px;
+        padding: 40px 40px;
+        background: var(--branco);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 24px var(--sombra);
+        width: calc(100% - 60px);
+      }
+      .secao-info.inversa {
+        flex-direction: row-reverse;
+      }
+      .secao-info .info-img {
+        flex-shrink: 0;
+        width: 320px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 8px 28px var(--sombra);
+      }
+      .secao-info .info-img img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+      }
+      .secao-info .info-texto h1 {
+        font-family: "Boldonse", system-ui, sans-serif;
+        font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+        color: var(--roxo-escuro);
+        margin-bottom: 16px;
+        line-height: 1.25;
+      }
+      .secao-info .info-texto p {
+        font-size: 0.93rem;
+        line-height: 1.8;
+        color: #444;
+        font-weight: 300;
+      }
+
+      /* CARDS DE VALORES */
+      .valores-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        max-width: 1100px;
+        margin: 0 auto 50px;
+        padding: 0 30px;
+      }
+      .valor-card {
+        background: linear-gradient(155deg, #4a0070, var(--roxo-escuro));
+        border-radius: var(--radius);
+        padding: 36px 26px 28px;
+        text-align: center;
+        box-shadow: 0 6px 28px var(--sombra);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        position: relative;
+        transition:
+          transform var(--tr),
+          box-shadow var(--tr);
+      }
+      .valor-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 44px rgba(46, 0, 79, 0.35);
+      }
+      .valor-icon {
+        font-size: 2.6rem;
+        margin-bottom: 14px;
+      }
+      .valor-card h2 {
+        font-family: "Boldonse", system-ui, sans-serif;
+        font-size: 1.1rem;
+        color: var(--amarelo);
+        margin-bottom: 10px;
+      }
+      .valor-card p {
+        font-size: 0.85rem;
+        line-height: 1.65;
+        color: var(--texto-card);
+        font-weight: 300;
+        opacity: 0.9;
+      }
+
+      /* TITULO SEÇÃO */
+      .secao-titulo {
+        text-align: center;
+        padding: 44px 20px 16px;
+      }
+      .secao-titulo h2 {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 800;
+        color: var(--roxo-escuro);
+      }
+      .secao-titulo h2 span {
+        color: var(--roxo-claro);
+      }
+      .secao-titulo p {
+        font-size: 0.9rem;
+        color: #888;
+        margin-top: 6px;
+        font-weight: 300;
+      }
+      .linha-dec {
+        width: 56px;
+        height: 4px;
+        background: var(--amarelo);
+        border-radius: 4px;
+        margin: 10px auto 0;
+      }
+
+      /* LOCALIZAÇÃO */
+      .localizacao-jah {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 70px;
+        background: linear-gradient(
+          135deg,
+          var(--roxo-claro) 0%,
+          var(--roxo-escuro) 100%
+        );
+        color: #fff;
+        padding: 80px 40px;
+        margin-top: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+      .localizacao-jah::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        pointer-events: none;
+      }
+      .localizacao-jah::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: -60px;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+        pointer-events: none;
+      }
+      .loc-visual {
+        z-index: 1;
+        flex-shrink: 0;
+        transform: rotate(-8deg);
+        transition: transform 0.4s;
+      }
+      .loc-visual:hover {
+        transform: rotate(0deg) scale(1.04);
+      }
+      .loc-mapa-box {
+        width: 200px;
+        height: 220px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+        font-size: 4rem;
+      }
+      .loc-mapa-box span {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .loc-texto {
+        z-index: 1;
+        max-width: 480px;
+      }
+      .loc-texto h2 {
+        font-size: 2.4rem;
+        font-weight: 800;
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+      .loc-texto p {
+        font-size: 1rem;
+        font-weight: 300;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 32px;
+        opacity: 0.8;
+      }
+      .botao-localizar {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--amarelo);
+        color: var(--roxo-escuro);
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 14px 34px;
+        border-radius: 32px;
+        box-shadow: 0 4px 20px rgba(248, 225, 75, 0.4);
+        transition:
+          background var(--tr),
+          transform var(--tr);
+      }
+      .botao-localizar:hover {
+        background: var(--amarelo-h);
+        transform: scale(1.06);
+      }
+
+      /* ── CONTATO: CANAIS ── */
+      .contatos-divino {
+        background: var(--branco);
+        text-align: center;
+        padding: 70px 20px 50px;
+      }
+      .contatos-divino h2 {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 800;
+        color: var(--roxo-escuro);
+        margin-bottom: 10px;
+      }
+      .contatos-divino h2 span {
+        color: var(--roxo-claro);
+      }
+      .contatos-divino > p {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 44px;
+        font-weight: 300;
+      }
+      .canais {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .canal-card {
+        background: linear-gradient(155deg, #4a0070, var(--roxo-escuro));
+        border-radius: var(--radius);
+        padding: 30px 28px;
+        min-width: 200px;
+        text-align: center;
+        box-shadow: 0 6px 24px var(--sombra);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        transition: transform var(--tr);
+      }
+      .canal-card:hover {
+        transform: translateY(-5px);
+      }
+      .canal-icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+      }
+      .canal-card h3 {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--amarelo);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .canal-card p,
+      .canal-card a {
+        font-size: 0.9rem;
+        color: var(--texto-card);
+        font-weight: 300;
+        transition: color var(--tr);
+      }
+      .canal-card a:hover {
+        color: var(--amarelo);
+      }
+      .redes {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 8px;
+      }
+      .redes img {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        object-fit: cover;
+        transition: transform var(--tr);
+      }
+      .redes img:hover {
+        transform: scale(1.15);
+      }
+
+      /* ── CONTATO: FORMULÁRIO ── */
+      .contato-form-section {
+        display: flex;
+        align-items: stretch;
+        max-width: 1100px;
+        margin: 0 auto 0;
+        width: calc(100% - 60px);
+        background: var(--branco);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 24px var(--sombra);
+        overflow: hidden;
+        min-height: 480px;
+      }
+      .form-pergunta {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.92rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      .opcoes-pedido {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .opcao-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1.5px solid rgba(248, 225, 75, 0.35);
+        border-radius: 10px;
+        padding: 10px 18px;
+        cursor: pointer;
+        color: #fff;
+        font-size: 0.88rem;
+        transition:
+          border-color var(--tr),
+          background var(--tr);
+      }
+
+      .opcao-item:hover {
+        border-color: var(--amarelo);
+        background: rgba(248, 225, 75, 0.1);
+      }
+
+.opcao-item input[type="checkbox"] {
+  accent-color: var(--amarelo);
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.opcao-item input[type="checkbox"]:checked + span {
+  color: var(--amarelo);
+  font-weight: 600;
+}
+
+
+      .resumo-pedido {
+        background: rgba(248, 225, 75, 0.1);
+        border: 1.5px solid var(--amarelo);
+        border-radius: 10px;
+        padding: 14px 18px;
+        color: #fff;
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+      .form-imagem {
+        flex: 1;
+        overflow: hidden;
+        min-height: 300px;
+      }
+      .form-imagem img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .form-imagem-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--roxo-claro),
+          var(--roxo-escuro)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 6rem;
+      }
+      .formulario {
+        flex: 1;
+        padding: 50px 56px;
+        background: var(--roxo-escuro);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .formulario h1 {
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 10px;
+      }
+      .formulario h1 span {
+        color: var(--amarelo);
+      }
+      .formulario > p {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 28px;
+        line-height: 1.6;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .linha {
+        display: flex;
+        gap: 12px;
+      }
+      input,
+      textarea {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1.5px solid rgba(248, 225, 75, 0.35);
+        border-radius: 10px;
+        color: #fff;
+        padding: 12px 16px;
+        flex: 1;
+        font-size: 0.88rem;
+        font-family: "Poppins", sans-serif;
+        transition:
+          border-color var(--tr),
+          box-shadow var(--tr);
+        outline: none;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: var(--amarelo);
+        box-shadow: 0 0 0 3px rgba(248, 225, 75, 0.15);
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      textarea {
+        resize: none;
+        min-height: 110px;
+      }
+      .btn-enviar {
+        margin-top: 12px;
+        align-self: flex-start;
+        background: var(--amarelo);
+        color: var(--roxo-escuro);
+        border: none;
+        border-radius: 24px;
+        padding: 12px 32px;
+        font-size: 0.92rem;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        transition:
+          background var(--tr),
+          transform var(--tr);
+        box-shadow: 0 4px 16px rgba(248, 225, 75, 0.35);
+      }
+      .btn-enviar:hover {
+        background: var(--amarelo-h);
+        transform: scale(1.05);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--roxo-escuro);
+        color: rgba(255, 255, 255, 0.6);
+        padding: 40px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-brand {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.8rem;
+        color: var(--amarelo);
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        text-align: center;
+        line-height: 1.6;
+      }
+      .footer-social {
+        display: flex;
+        gap: 12px;
+      }
+      .footer-social img {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        object-fit: cover;
+        transition: transform var(--tr);
+      }
+      .footer-social img:hover {
+        transform: scale(1.15);
+      }
+
+      /* TABLET */
+      @media (max-width: 900px) {
+        .secao-info,
+        .secao-info.inversa {
+          flex-direction: column;
+        }
+        .secao-info .info-img {
+          width: 100%;
+        }
+        .secao-info .info-img img {
+          height: 220px;
+        }
+        .valores-grid {
+          grid-template-columns: 1fr 1fr;
+          padding: 0 20px;
+        }
+        .localizacao-jah {
+          flex-direction: column;
+          text-align: center;
+          gap: 36px;
+          padding: 60px 24px;
+        }
+        .loc-visual {
+          transform: rotate(0deg);
+        }
+        .contato-form-section {
+          flex-direction: column;
+          width: calc(100% - 32px);
+        }
+        .form-imagem {
+          min-height: 220px;
+        }
+        .formulario {
+          padding: 40px 32px;
+        }
+        .banner-empresa {
+          width: calc(100% - 32px);
+        }
+      }
+      /* MOBILE */
+      @media (max-width: 600px) {
+        #header {
+          padding: 0 18px;
+          height: 64px;
+        }
+        #menuToggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        #menu {
+          display: none;
+          position: absolute;
+          top: 64px;
+          left: 0;
+          right: 0;
+          background: var(--roxo-escuro);
+          flex-direction: column;
+          padding: 12px 16px 20px;
+          gap: 4px;
+          box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        #menu.open {
+          display: flex;
+        }
+        #menu a {
+          font-size: 1rem;
+          padding: 13px 16px;
+          width: 100%;
+          border-radius: 10px;
+        }
+        #menu .btn-contato {
+          margin: 8px 0 0;
+          text-align: center;
+        }
+        .banner-empresa {
+          width: calc(100% - 24px);
+          height: 200px;
+          margin: 16px auto;
+        }
+        .secao-info {
+          width: calc(100% - 24px);
+          padding: 28px 20px;
+        }
+        .valores-grid {
+          grid-template-columns: 1fr;
+          padding: 0 12px;
+        }
+        .canais {
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+        }
+        .canal-card {
+          width: 100%;
+          max-width: 360px;
+        }
+        .localizacao-jah {
+          padding: 50px 20px 44px;
+          gap: 28px;
+        }
+        .loc-texto h2 {
+          font-size: 1.7rem;
+        }
+        .contato-form-section {
+          width: calc(100% - 24px);
+        }
+        .formulario {
+          padding: 32px 22px;
+        }
+        .linha {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .footer-inner {
+          flex-direction: column;
+          text-align: center;
+          gap: 14px;
+        }
+        .footer-social {
+          justify-content: center;
+        }
+      }
+
+.sub-opcoes {
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(248,225,75,0.2);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.opcoes-pedido input[type="radio"] {
+  accent-color: var(--amarelo);
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.opcoes-pedido input[type="radio"]:checked + span {
+  color: var(--amarelo);
+  font-weight: 600;
+}
+
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <div id="logo">&#127815; Divino A&#231;a&#237;</div>
+      <button id="menuToggle"><i class="fas fa-bars"></i></button>
+      <nav id="menu">
+        <a href="index.html">In&#237;cio</a>
+        <a href="Empresa_teste.html">Divino</a>
+        <a class="btn-contato" href="Contato_teste.html">Contato</a>
+      </nav>
+    </header>
+
+    <div class="secao-titulo">
+      <h2>Fale com o <span>Divino A&#231;a&#237;</span></h2>
+      <p>Estamos prontos pra te atender!</p>
+      <div class="linha-dec"></div>
+    </div>
+
+    <section class="contatos-divino">
+      <div class="canais">
+        <div class="canal-card">
+          <div class="canal-icon">&#128222;</div>
+          <h3>Telefone</h3>
+          <p>(+55) 54 99631-2541</p>
+        </div>
+        <div class="canal-card">
+          <div class="canal-icon">&#128336;</div>
+          <h3>Hor&#225;rio</h3>
+          <p>Seg-Sex: 14:30h as 21:30h<br />Sab: 14:00h as 19:30h<br />Dom: 14:00h as 18:00h</p>
+        </div>
+        <div class="canal-card">
+          <div class="canal-icon">&#128241;</div>
+          <h3>Redes Sociais</h3>
+          <div class="redes">
+            <a href="https://www.instagram.com/divinoacaiteriaa" target="_blank"
+              ><img src="./img/ícone-insta.png" alt="Instagram"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contato-form-section">
+      <div class="form-imagem">
+        <div class="form-imagem-placeholder">&#127815;</div>
+      </div>
+      <div class="formulario">
+        <h1>Tem alguma <span>d&#250;vida?</span></h1>
+        <p>Preencha o formulario e entraremos em contato em breve!</p>
+        <div
+          id="msg-sucesso"
+          style="
+            display: none;
+            background: rgba(248, 225, 75, 0.15);
+            border: 1.5px solid var(--amarelo);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+            color: #fff;
+            font-size: 0.9rem;
+            line-height: 1.6;
+          " >
+          &#10003; <strong>Mensagem enviada!</strong> Em breve entraremos em
+          contato.
+        </div>
+        <div
+          id="msg-erro"
+          style="
+            display: none;
+            background: rgba(255, 80, 80, 0.15);
+            border: 1.5px solid #ff5050;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+            color: #fff;
+            font-size: 0.9rem;
+          "
+        >
+          &#10060; Nao foi possivel enviar. Tente pelo WhatsApp.
+        </div>
+
+<form id="contatoForm">
+  <input type="text" id="from_name" name="from_name" placeholder="Seu nome" required />
+
+  <p class="form-pergunta">O que você deseja pedir? 🍨</p>
+  <div class="opcoes-pedido">
+    <label class="opcao-item">
+      <input type="checkbox" name="pedido" value="Açaí" />
+      <span>🍇 Açaí</span>
+    </label>
+    <label class="opcao-item">
+      <input type="checkbox" name="pedido" value="Milkshake" />
+      <span>🥤 Milkshake</span>
+    </label>
+    <label class="opcao-item">
+      <input type="checkbox" name="pedido" value="Sundae" />
+      <span>🍦 Sundae</span>
+    </label>
+    <label class="opcao-item">
+      <input type="checkbox" name="pedido" value="Cachorro Quente" />
+      <span>🌭 Cachorro Quente</span>
+    </label>
+  </div>
+
+  <!-- Sub-opções dinâmicas -->
+  <div id="sub-acai" class="sub-opcoes" style="display:none;">
+    <p class="form-pergunta">🍇 Tamanho do Açaí:</p>
+    <div class="opcoes-pedido">
+      <label class="opcao-item"><input type="radio" name="tam-acai" value="P - 300ml (R$12)" /><span>P - 300ml</span></label>
+      <label class="opcao-item"><input type="radio" name="tam-acai" value="M - 500ml (R$18)" /><span>M - 500ml</span></label>
+      <label class="opcao-item"><input type="radio" name="tam-acai" value="G - 700ml (R$24)" /><span>G - 700ml</span></label>
+    </div>
+  </div>
+
+  <div id="sub-milk" class="sub-opcoes" style="display:none;">
+    <p class="form-pergunta">🥤 Tamanho do Milkshake:</p>
+    <div class="opcoes-pedido">
+      <label class="opcao-item"><input type="radio" name="tam-milk" value="P - 300ml (R$12)" /><span>P - 300ml</span></label>
+      <label class="opcao-item"><input type="radio" name="tam-milk" value="M - 500ml (R$18)" /><span>M - 500ml</span></label>
+      <label class="opcao-item"><input type="radio" name="tam-milk" value="G - 700ml (R$24)" /><span>G - 700ml</span></label>
+    </div>
+    <p class="form-pergunta" style="margin-top:10px;">Sabor do Milkshake:</p>
+    <div class="opcoes-pedido">
+      <label class="opcao-item"><input type="radio" name="sab-milk" value="Chocolate" /><span>🍫 Chocolate</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-milk" value="Ovomaltine" /><span>🌟 Ovomaltine</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-milk" value="Maracujá" /><span>🍊 Maracujá</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-milk" value="Morango" /><span>🍓 Morango</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-milk" value="Paçoca" /><span>🥜 Paçoca</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-milk" value="Avelã" /><span>🌰 Avelã</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-milk" value="Milho" /><span>🌽 Milho</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-milk" value="Oreo" /><span>🍪 Oreo</span></label>
+    </div>
+  </div>
+
+  <div id="sub-sundae" class="sub-opcoes" style="display:none;">
+    <p class="form-pergunta">🍦 Tipo de Sundae:</p>
+    <div class="opcoes-pedido">
+      <label class="opcao-item"><input type="radio" name="tipo-sundae" value="Sundae" /><span>🍦 Sundae</span></label>
+      <label class="opcao-item"><input type="radio" name="tipo-sundae" value="Casquinha (R$6)" /><span>🍦 Casquinha</span></label>
+      <label class="opcao-item"><input type="radio" name="tipo-sundae" value="Cascão (R$9)" /><span>🍦 Cascão</span></label>
+    </div>
+    <p class="form-pergunta" style="margin-top:10px;">Sabor:</p>
+    <div class="opcoes-pedido">
+      <label class="opcao-item"><input type="radio" name="sab-sundae" value="Chocolate" /><span>🍫 Chocolate</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-sundae" value="Morango" /><span>🍓 Morango</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-sundae" value="Torta Alemã" /><span>🎂 Torta Alemã</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-sundae" value="Unicórnio" /><span>🦄 Unicórnio</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-sundae" value="Creme" /><span>🍨 Creme</span></label>
+      <label class="opcao-item"><input type="radio" name="sab-sundae" value="Uva e Nata" /><span>🍇 Uva e Nata</span></label>
+    </div>
+  </div>
+
+  <div id="sub-cachorro" class="sub-opcoes" style="display:none;">
+    <p class="form-pergunta">🌭 Tipo de Cachorro Quente:</p>
+    <div class="opcoes-pedido">
+      <label class="opcao-item"><input type="radio" name="tipo-cachorro" value="Simples" /><span>Simples</span></label>
+      <label class="opcao-item"><input type="radio" name="tipo-cachorro" value="Duplo" /><span>Duplo</span></label>
+    </div>
+    <p class="form-pergunta" style="margin-top:10px;">Adicionais:</p>
+    <div class="opcoes-pedido">
+      <label class="opcao-item"><input type="checkbox" name="add-cachorro" value="Doritos (+R$4)" /><span>Doritos</span></label>
+      <label class="opcao-item"><input type="checkbox" name="add-cachorro" value="Calabresa (+R$4)" /><span>Calabresa</span></label>
+    </div>
+  </div>
+
+  <!-- Resumo -->
+  <div id="resumo-pedido" class="resumo-pedido" style="display:none;">
+    <p id="texto-resumo"></p>
+  </div>
+
+  <button type="submit" class="btn-enviar">
+    Enviar Pedido no WhatsApp 💬
+  </button>
+
+</form>
+
+          <!-- Texto gerado com a resposta -->
+          <div id="resumo-pedido" class="resumo-pedido" style="display: none">
+            <p id="texto-resumo"></p>
+          </div>
+
+          <p
+            id="msg-sucesso"
+            style="display: none; color: #f8e14b; font-weight: 600"
+          >
+            ✅ Redirecionando para o WhatsApp...
+          </p>
+          <p
+            id="msg-erro"
+            style="display: none; color: #ff6b6b; font-weight: 600"
+          >
+            ❌ Preencha todos os campos!
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <section class="localizacao-jah">
+      <div class="loc-visual">
+        <div class="loc-mapa-box">&#128205;<span>Nossa loja</span></div>
+      </div>
+      <div class="loc-texto">
+        <h2>Procurando<br />o Divino?</h2>
+        <p>Encontre a unidade mais proxima!</p>
+        <a
+          href="https://www.google.com/maps/place/Divino+Sorveteria+A%C3%A7aiteria/@-29.1965699,-51.1849064,17z"
+          target="_blank"
+          class="botao-localizar"
+        >
+          <i class="fas fa-map-marker-alt"></i> Localizar no mapa
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-inner">
+        <p class="footer-brand">&#127815; Divino A&#231;a&#237;</p>
+        <p class="footer-copy">
+          &#169; 2025 Divino Sorveteria &amp; Acaiteria.<br />Todos os direitos
+          reservados.
+        </p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/divinoacaiteriaa/"
+            ><img src="./img/ícone-insta.png" alt="WhatsApp"
+          /></a>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+
+<script>
+  // Menu toggle
+  const menuToggle = document.getElementById("menuToggle");
+  const menu = document.getElementById("menu");
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("open");
+  });
+
+  // Mapa: checkbox → sub-opção correspondente
+  const subMap = {
+    "Açaí":           "sub-acai",
+    "Milkshake":      "sub-milk",
+    "Sundae":         "sub-sundae",
+    "Cachorro Quente":"sub-cachorro"
+  };
+
+  // Mostra/esconde sub-opções conforme checkbox marcado
+  document.querySelectorAll('input[name="pedido"]').forEach(cb => {
+    cb.addEventListener("change", () => {
+      const sub = document.getElementById(subMap[cb.value]);
+      if (sub) sub.style.display = cb.checked ? "flex" : "none";
+      atualizarResumo();
+    });
+  });
+
+  document.getElementById("from_name").addEventListener("input", atualizarResumo);
+  document.querySelectorAll('.sub-opcoes input').forEach(i => {
+    i.addEventListener("change", atualizarResumo);
+  });
+
+  function atualizarResumo() {
+    const nome    = document.getElementById("from_name").value.trim();
+    const pedidos = [...document.querySelectorAll('input[name="pedido"]:checked')]
+                    .map(cb => cb.value);
+    const resumo  = document.getElementById("resumo-pedido");
+    const texto   = document.getElementById("texto-resumo");
+
+    if (!nome || pedidos.length === 0) {
+      resumo.style.display = "none";
+      return;
+    }
+
+    let detalhes = "";
+
+    if (pedidos.includes("Açaí")) {
+      const tam   = document.querySelector('input[name="tam-acai"]:checked');
+      const acomp = [...document.querySelectorAll('input[name="acomp-acai"]:checked')].map(i => i.value);
+      detalhes += `\n🍇 <strong>Açaí</strong>`;
+      if (tam)          detalhes += ` — ${tam.value}`;
+      if (acomp.length) detalhes += `<br>&nbsp;&nbsp;Acomp: ${acomp.join(", ")}`;
+    }
+
+    if (pedidos.includes("Milkshake")) {
+      const tam = document.querySelector('input[name="tam-milk"]:checked');
+      const sab = document.querySelector('input[name="sab-milk"]:checked');
+      detalhes += `\n🥤 <strong>Milkshake</strong>`;
+      if (tam) detalhes += ` — ${tam.value}`;
+      if (sab) detalhes += `<br>&nbsp;&nbsp;Sabor: ${sab.value}`;
+    }
+
+    if (pedidos.includes("Sundae")) {
+      const tipo = document.querySelector('input[name="tipo-sundae"]:checked');
+      const sab  = document.querySelector('input[name="sab-sundae"]:checked');
+      detalhes += `\n🍦 <strong>Sundae</strong>`;
+      if (tipo) detalhes += ` — ${tipo.value}`;
+      if (sab)  detalhes += `<br>&nbsp;&nbsp;Sabor: ${sab.value}`;
+    }
+
+    if (pedidos.includes("Cachorro Quente")) {
+      const tipo = document.querySelector('input[name="tipo-cachorro"]:checked');
+      const adds = [...document.querySelectorAll('input[name="add-cachorro"]:checked')].map(i => i.value);
+      detalhes += `\n🌭 <strong>Cachorro Quente</strong>`;
+      if (tipo) detalhes += ` — ${tipo.value}`;
+      if (adds.length) detalhes += `<br>&nbsp;&nbsp;Adicionais: ${adds.join(", ")}`;
+    }
+
+    texto.innerHTML = `👤 <strong>${nome}</strong>, seu pedido:<br>${detalhes}<br><br>Clique em <em>Enviar</em> para confirmar! 🚀`;
+    resumo.style.display = "block";
+  }
+
+  // Envio para WhatsApp
+  document.getElementById("contatoForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nome    = document.getElementById("from_name").value.trim();
+    const pedidos = [...document.querySelectorAll('input[name="pedido"]:checked')]
+                    .map(cb => cb.value);
+
+    if (!nome || pedidos.length === 0) return;
+
+    let detalhesMsg = "";
+
+    if (pedidos.includes("Açaí")) {
+      const tam   = document.querySelector('input[name="tam-acai"]:checked');
+      const acomp = [...document.querySelectorAll('input[name="acomp-acai"]:checked')].map(i => i.value);
+      detalhesMsg += `\n *Açaí*${tam ? ` — ${tam.value}` : ""}`;
+      if (acomp.length) detalhesMsg += `\n   Acomp: ${acomp.join(", ")}`;
+    }
+    if (pedidos.includes("Milkshake")) {
+      const tam = document.querySelector('input[name="tam-milk"]:checked');
+      const sab = document.querySelector('input[name="sab-milk"]:checked');
+      detalhesMsg += `\n *Milkshake*${tam ? ` — ${tam.value}` : ""}`;
+      if (sab) detalhesMsg += `\n   Sabor: ${sab.value}`;
+    }
+    if (pedidos.includes("Sundae")) {
+      const tipo = document.querySelector('input[name="tipo-sundae"]:checked');
+      const sab  = document.querySelector('input[name="sab-sundae"]:checked');
+      detalhesMsg += `\n *Sundae*${tipo ? ` — ${tipo.value}` : ""}`;
+      if (sab) detalhesMsg += `\n   Sabor: ${sab.value}`;
+    }
+    if (pedidos.includes("Cachorro Quente")) {
+      const tipo = document.querySelector('input[name="tipo-cachorro"]:checked');
+      const adds = [...document.querySelectorAll('input[name="add-cachorro"]:checked')].map(i => i.value);
+      detalhesMsg += `\n *Cachorro Quente*${tipo ? ` — ${tipo.value}` : ""}`;
+      if (adds.length) detalhesMsg += `\n   Adicionais: ${adds.join(", ")}`;
+    }
+
+    const mensagem =
+`Olá, Divino Açaí! 
+
+*Nome:* ${nome}
+*Pedido(s):*${detalhesMsg}
+
+Gostaria de fazer meu pedido! `;
+
+    const url = `https://wa.me/5554996312541?text=${encodeURIComponent(mensagem)}`;
+    document.getElementById("msg-sucesso").style.display = "block";
+
+    setTimeout(() => {
+      window.open(url, "_blank");
+      document.getElementById("contatoForm").reset();
+      document.getElementById("msg-sucesso").style.display = "none";
+      document.getElementById("resumo-pedido").style.display = "none";
+      document.querySelectorAll('.sub-opcoes').forEach(s => s.style.display = "none");
+    }, 1000);
+  });
+</script>
+
+  </body>
+</html>

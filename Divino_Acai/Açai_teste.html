@@ -704,66 +704,22 @@ a   { text-decoration:none; }
         <div class="linha-dec"></div>
     </div>
 
-    <div class="tamanhos-grid">
-        <div class="tam-card">
-            <div class="tam-letra">P</div>
-            <div class="tam-ml">300 ml</div>
-            <div class="tam-preco">R$ 12,00</div>
-        </div>
-        <div class="tam-card">
-            <div class="tam-letra">M</div>
-            <div class="tam-ml">500 ml</div>
-            <div class="tam-preco">R$ 18,00</div>
-        </div>
-        <div class="tam-card">
-            <div class="tam-letra">G</div>
-            <div class="tam-ml">700 ml</div>
-            <div class="tam-preco">R$ 24,00</div>
-        </div>
-    </div>
+    
+<div class="tamanhos-grid" id="tamanhosGrid">
+    <p>Carregando tamanhos...</p>
+</div>
 
-    <div class="secao-titulo">
-        <h2><span>Acompanhamentos</span></h2>
-        <div class="linha-dec"></div>
-    </div>
 
-    <div class="acomp-grid">
-        <div class="acomp-col">
-            <span class="acomp-badge">✅ Grátis</span>
-            <ul>
-                <li>Leite em Pó</li>
-                <li>Leite Condensado</li>
-                <li>Granola</li>
-                <li>Paçoca</li>
-                <li>Banana</li>
-            </ul>
-        </div>
-        <div class="acomp-col">
-            <span class="acomp-badge">🍫 R$ 3,00 cada</span>
-            <ul>
-                <li>Creme Choc. Branco</li>
-                <li>Creme Leitinho</li>
-                <li>Creme Morango</li>
-                <li>Creme Choc. ao Leite</li>
-                <li>Creme de Avelã</li>
-            </ul>
-        </div>
-        <div class="acomp-col">
-            <span class="acomp-badge">⭐ Adicionais</span>
-            <ul>
-                <li>KitKat <span class="preco-item">R$ 5,00</span></li>
-                <li>Morango <span class="preco-item">R$ 5,00</span></li>
-                <li>M&amp;M's <span class="preco-item">R$ 3,00</span></li>
-                <li>Sucrilhos <span class="preco-item">R$ 3,00</span></li>
-                <li>Oreo <span class="preco-item">R$ 3,00</span></li>
-                <li>Ovomaltine <span class="preco-item">R$ 3,00</span></li>
-                <li>Choco Ball <span class="preco-item">R$ 2,00</span></li>
-                <li>Stikadinho <span class="preco-item">R$ 2,00</span></li>
-                <li>Fini <span class="preco-item">R$ 2,00</span></li>
-                <li>Gomets <span class="preco-item">R$ 1,00</span></li>
-            </ul>
-        </div>
-    </div>
+    
+<div class="secao-titulo">
+    <h2><span>Acompanhamentos</span></h2>
+    <div class="linha-dec"></div>
+</div>
+
+<div class="acomp-grid" id="acompGrid">
+    <p>Carregando acompanhamentos...</p>
+</div>
+
 
     <section class="fruta-section">
         <div class="fruta-img">
@@ -802,6 +758,166 @@ a   { text-decoration:none; }
             document.querySelectorAll('.info-milkshake').forEach(el => el.classList.remove('show-info'));
             document.getElementById('overlay').classList.remove('show');
         }
+
+async function carregarTamanhos() {
+    const grade = document.getElementById("tamanhosGrid");
+
+    try {
+        const resposta = await fetch("http://localhost:3000/produtos");
+
+        if (!resposta.ok) {
+            throw new Error("Não foi possível buscar os produtos.");
+        }
+
+        const produtos = await resposta.json();
+
+        const acais = produtos.filter(produto =>
+            produto.categoria === "Açaí" &&
+            /açaí\s+\d+\s*ml/i.test(produto.nome)
+        );
+
+        if (acais.length === 0) {
+            grade.innerHTML = "<p>Nenhum tamanho disponível no momento.</p>";
+            return;
+        }
+
+        grade.innerHTML = acais.map(produto => {
+            const tamanho = produto.nome.match(/\d+\s*ml/i)?.[0] || "";
+
+            let letra = "P";
+            const ml = parseInt(tamanho);
+
+            if (ml >= 700) {
+                letra = "G";
+            } else if (ml >= 500) {
+                letra = "M";
+            }
+
+            const preco = Number(produto.preco).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL"
+            });
+
+            return `
+                <div class="tam-card">
+                    <div class="tam-letra">${letra}</div>
+                    <div class="tam-ml">${tamanho}</div>
+                    <div class="tam-preco">${preco}</div>
+                </div>
+            `;
+        }).join("");
+
+    } catch (erro) {
+        console.error("Erro ao carregar tamanhos:", erro);
+        grade.innerHTML =
+            "<p>Não foi possível carregar os tamanhos. Confira se o servidor está ligado.</p>";
+    }
+}
+
+carregarTamanhos();
+
+
+async function carregarAcompanhamentos() {
+    const container = document.getElementById("acompGrid");
+
+    if (!container) return;
+
+    try {
+        const resposta = await fetch(
+            "http://localhost:3000/acompanhamentos"
+        );
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao buscar acompanhamentos");
+        }
+
+        const acompanhamentos = await resposta.json();
+
+        const grupos = {
+            gratis: {
+                titulo: "✅ Grátis",
+                itens: []
+            },
+            cremes: {
+                titulo: "🍫 R$ 3,00 cada",
+                itens: []
+            },
+            adicionais: {
+                titulo: "⭐ Adicionais",
+                itens: []
+            }
+        };
+
+        acompanhamentos.forEach(item => {
+            const nomeGrupo = String(item.grupo)
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase();
+
+            let grupo;
+
+            if (nomeGrupo.includes("grat")) {
+                grupo = "gratis";
+            } else if (nomeGrupo.includes("crem")) {
+                grupo = "cremes";
+            } else {
+                grupo = "adicionais";
+            }
+
+            grupos[grupo].itens.push(item);
+        });
+
+        container.replaceChildren();
+
+        Object.entries(grupos).forEach(([chave, grupo]) => {
+            if (grupo.itens.length === 0) return;
+
+            const coluna = document.createElement("div");
+            coluna.className = "acomp-col";
+
+            const badge = document.createElement("span");
+            badge.className = "acomp-badge";
+            badge.textContent = grupo.titulo;
+
+            const lista = document.createElement("ul");
+
+            grupo.itens.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item.nome;
+
+                if (chave === "adicionais") {
+                    const preco = document.createElement("span");
+                    preco.className = "preco-item";
+                    preco.textContent =
+                        "R$ " + Number(item.preco)
+                            .toFixed(2)
+                            .replace(".", ",");
+
+                    li.appendChild(document.createTextNode(" "));
+                    li.appendChild(preco);
+                }
+
+                lista.appendChild(li);
+            });
+
+            coluna.appendChild(badge);
+            coluna.appendChild(lista);
+            container.appendChild(coluna);
+        });
+
+        if (container.children.length === 0) {
+            container.textContent =
+                "Nenhum acompanhamento cadastrado.";
+        }
+
+    } catch (erro) {
+        console.error(erro);
+        container.textContent =
+            "Não foi possível carregar os acompanhamentos.";
+    }
+}
+
+carregarAcompanhamentos();
 
     </script>
 </body>

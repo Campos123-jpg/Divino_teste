@@ -742,49 +742,15 @@ a   { text-decoration:none; }
         <h2>🍦 <span>Sundae</span></h2>
         <div class="linha-dec"></div>
     </div>
-    <div class="tamanhos-grid">
-        <div class="tam-card">
-            <div class="tam-letra">P</div>
-            <div class="tam-ml">300 ml</div>
-            <div class="tam-preco">R$ 12,00</div>
-        </div>
-        <div class="tam-card">
-            <div class="tam-letra">M</div>
-            <div class="tam-ml">500 ml</div>
-            <div class="tam-preco">R$ 18,00</div>
-        </div>
-        <div class="tam-card">
-            <div class="tam-letra">GG</div>
-            <div class="tam-ml">700 ml</div>
-            <div class="tam-preco">R$ 24,00</div>
-        </div>
-    </div>
-    <div class="produtos-grid" style="grid-template-columns:repeat(3,1fr);max-width:820px;">
-        <div class="prod-card">
-            <img src="./img/Sundae_Chocolate.PNG.png" alt="Chocolate">
-            <button class="btn-info" onclick="abrirModal('modalChocolate')">🍫 Chocolate</button>
-        </div>
-        <div class="prod-card">
-            <img src="./img/Sundae_Morango.PNG.png" alt="Morango">
-            <button class="btn-info" onclick="abrirModal('modalMorango')">🍓 Morango</button>
-        </div>
-        <div class="prod-card">
-            <img src="./img/Sundae_Torta_Alemã.PNG.png" alt="Torta-Alemã">
-            <button class="btn-info" onclick="abrirModal('modalTortaAlema')">🎂 Torta-Alemã</button>
-        </div>
-        <div class="prod-card">
-            <img src="./img/Sundae_Unicórnio.PNG.png" alt="Unicórnio">
-            <button class="btn-info" onclick="abrirModal('modalUnicornio')">🦄 Unicórnio</button>
-        </div>
-        <div class="prod-card">
-            <img src="./img/Sundae_Creme.PNG.png" alt="Creme">
-            <button class="btn-info" onclick="abrirModal('modalCreme')">🍨 Creme</button>
-        </div>
-        <div class="prod-card">
-            <img src="./img/Sundae_Uva_e_Nata.PNG.png" alt="Uva e Nata">
-            <button class="btn-info" onclick="abrirModal('modalUvaNata')">🍇 Uva e Nata</button>
-        </div>
-    </div>
+    <div id="tamanhosSundae" class="tamanhos-grid">
+    <p id="carregandoTamanhos">Carregando tamanhos...</p>
+</div>
+
+    <div id="listaSundaes" class="produtos-grid" style="grid-template-columns:repeat(3,1fr);max-width:820px;">
+    <p id="carregandoSundaes" style="grid-column:1/-1;text-align:center;">
+        Carregando os sabores...
+    </p>
+</div>
 
     <div id="overlay" class="modal-overlay" onclick="fecharTodos()"></div>
     <span id="modalChocolate" class="info-milkshake">
@@ -871,6 +837,137 @@ a   { text-decoration:none; }
             document.querySelectorAll('.info-milkshake').forEach(el => el.classList.remove('show-info'));
             document.getElementById('overlay').classList.remove('show');
         }
+
+        
+async function carregarTamanhosSundae() {
+    const grade = document.getElementById("tamanhosSundae");
+
+    try {
+        const resposta = await fetch(
+            "http://localhost:3000/tamanhos"
+        );
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao buscar tamanhos.");
+        }
+
+        const tamanhos = await resposta.json();
+
+        grade.innerHTML = "";
+
+        tamanhos
+            .filter(tamanho => tamanho.ativo == 1)
+            .forEach(tamanho => {
+                const card = document.createElement("div");
+                card.className = "tam-card";
+
+                const letra = document.createElement("div");
+                letra.className = "tam-letra";
+                letra.textContent = tamanho.tamanho;
+
+                const volume = document.createElement("div");
+                volume.className = "tam-ml";
+                volume.textContent = `${tamanho.volume_ml} ml`;
+
+                const preco = document.createElement("div");
+                preco.className = "tam-preco";
+                preco.textContent = Number(tamanho.preco).toLocaleString(
+                    "pt-BR",
+                    { style: "currency", currency: "BRL" }
+                );
+
+                card.append(letra, volume, preco);
+                grade.appendChild(card);
+            });
+
+        if (grade.children.length === 0) {
+            grade.textContent = "Nenhum tamanho disponível.";
+        }
+
+    } catch (erro) {
+        console.error("Erro ao carregar tamanhos:", erro);
+        grade.textContent =
+            "Não foi possível carregar os tamanhos. Verifique o servidor.";
+    }
+}
+
+carregarTamanhosSundae();
+
+        
+async function carregarSundaes() {
+    const lista = document.getElementById("listaSundaes");
+
+    
+    const imagens = {
+        "Sundae de Chocolate": "./img/Sundae_Chocolate.PNG.png",
+        "Sundae de Morango": "./img/Sundae_Morango.PNG.png",
+        "Sundae de Torta-Alemã": "./img/Sundae_Torta_Alemã.PNG.png",
+        "Sundae Unicórnio": "./img/Sundae_Unicórnio.PNG.png",
+        "Sundae de Creme": "./img/Sundae_Creme.PNG.png",
+        "Sundae de Uva e Nata": "./img/Sundae_Uva_e_Nata.PNG.png"
+    };
+
+
+   
+    const modais = {
+        "Sundae de Chocolate": "modalChocolate",
+        "Sundae de Morango": "modalMorango",
+        "Sundae de Torta-Alemã": "modalTortaAlema",
+        "Sundae Unicórnio": "modalUnicornio",
+        "Sundae de Creme": "modalCreme",
+        "Sundae de Uva e Nata": "modalUvaNata"
+    };
+
+    try {
+        const resposta = await fetch("http://localhost:3000/produtos");
+
+        if (!resposta.ok) {
+            throw new Error("Não foi possível buscar os produtos.");
+        }
+
+        const produtos = await resposta.json();
+
+        const sundaes = produtos.filter(produto =>
+            produto.ativo == 1 &&
+            produto.categoria_id == 2 &&
+            Object.keys(imagens).includes(produto.nome)
+        );
+
+        lista.innerHTML = "";
+
+        if (sundaes.length === 0) {
+            lista.innerHTML =
+                '<p style="grid-column:1/-1;text-align:center;">Nenhum Sundae encontrado.</p>';
+            return;
+        }
+
+        sundaes.forEach(produto => {
+            const card = document.createElement("div");
+            card.className = "prod-card";
+
+            const imagem = document.createElement("img");
+            imagem.src = produto.imagem || imagens[produto.nome];
+            imagem.alt = produto.nome;
+
+            const botao = document.createElement("button");
+            botao.className = "btn-info";
+           botao.textContent = produto.nome.replace("Sundae de ", "").replace("Sundae ", "");
+            botao.onclick = () => abrirModal(modais[produto.nome]);
+
+            card.appendChild(imagem);
+            card.appendChild(botao);
+            lista.appendChild(card);
+        });
+
+    } catch (erro) {
+        console.error("Erro ao carregar Sundaes:", erro);
+        lista.innerHTML =
+            '<p style="grid-column:1/-1;text-align:center;">Não foi possível carregar os sabores. Verifique se o servidor está ligado.</p>';
+    }
+}
+
+carregarSundaes();
+
 
     </script>
 </body>

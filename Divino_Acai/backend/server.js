@@ -102,6 +102,28 @@ app.get("/acompanhamentos", (req, res) => {
     });
 });
 
+
+app.get("/tamanhos", (req, res) => {
+    const sql = `
+        SELECT *
+        FROM tamanhos
+        WHERE ativo = TRUE
+        ORDER BY id ASC
+    `;
+
+    db.query(sql, (err, resultados) => {
+        if (err) {
+            console.error("Erro ao buscar tamanhos de milk-shake:", err);
+            return res.status(500).json({
+                erro: "Erro ao buscar tamanhos de milk-shake"
+            });
+        }
+
+        res.json(resultados);
+    });
+});
+
+
 app.post("/produtos", (req, res) => {
     const {
         nome,
